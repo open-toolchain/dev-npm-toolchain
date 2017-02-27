@@ -27,7 +27,7 @@ services:
               $ref: echo.pipeline.yml
               $refType: text
             env:
-              ECHO_REPO: "echo-repo"
+              ECHO_REPO: echo-repo
             execute: true
       service_id: pipeline
     app-build:
@@ -44,7 +44,7 @@ services:
               PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
               PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
               PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
-              APP_REPO: "app-repo"
+              APP_REPO: app-repo
             execute: true
       service_id: pipeline
 

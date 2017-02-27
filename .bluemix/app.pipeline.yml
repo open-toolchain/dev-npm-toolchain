@@ -2,7 +2,7 @@
 stages:
 - name: Build
   inputs:
-  - service: $APP_REPO
+  - service: ${APP_REPO}
     type: git
     branch: master
   triggers:
