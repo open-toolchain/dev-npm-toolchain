@@ -47,7 +47,6 @@ services:
               APP_REPO: app-repo
             execute: true
       service_id: pipeline
-
     echo-repo:
       parameters:
         has_issues: true
@@ -55,7 +54,6 @@ services:
         repo_url: '{{form.githubpublic.parameters.echo-repo_url}}'
         type: clone
       service_id: githubpublic
-
     app-repo:
       parameters:
         has_issues: true
