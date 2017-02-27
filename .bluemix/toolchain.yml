@@ -1,0 +1,81 @@
+version: '2'
+default_locale: en
+locales:
+  $ref: locales.yml
+template:
+  name: DEV-npm-nexus-scenario3
+  description: DEV-npm-nexus-scenario3
+  required:
+    - echo-build
+    - app-build
+    - echo-repo
+    - app-repo
+  info:
+    git url: >-
+      [https://github.com/paulweb515/dev-npm-toolchain](https://github.com/paulweb515/dev-npm-toolchain)
+    git branch: '[master](https://github.com/paulweb515/dev-npm-toolchain/tree/master)'
+toolchain:
+  name: 'DEV-npm-scenario3-{{timestamp}}'
+services:
+    echo-build:
+      parameters:
+          services:
+            - echo-repo
+          name: 'echo-{{toolchain.name}}'
+          configuration:
+            content:
+              $ref: echo.pipeline.yml
+              $refType: text
+            env:
+              ECHO_REPO: "echo-repo"
+            execute: true
+      service_id: pipeline
+    app-build:
+      parameters:
+          services:
+            - app-repo
+          name: 'app-{{toolchain.name}}'
+          configuration:
+            content:
+              $ref: app.pipeline.yml
+              $refType: text
+            env:
+              CF_APP_NAME: '{{form.pipeline.parameters.catalog-app-name}}'
+              PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
+              PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
+              PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+              APP_REPO: "app-repo"
+            execute: true
+      service_id: pipeline
+
+    echo-repo:
+      parameters:
+        has_issues: true
+        repo_name: echo-"{{name}}"
+        repo_url: https://github.com/open-toolchain/dev-echo-module.git
+        type: clone
+      service_id: githubpublic
+
+    app-repo:
+      parameters:
+        has_issues: true
+        repo_name: app-"{{name}}"
+        repo_url: https://github.com/open-toolchain/dev-simple-app.git
+        type: clone
+      service_id: githubpublic
+    npm-nexus:
+      parameters:
+        dashboard_url: https://nexus3.mybluemix.net/
+        label: npm-nexus
+        mirror_url: https://nexus3.mybluemix.net/repository/npm-public
+        name: npm-nexus
+        release_url: https://nexus3.mybluemix.net/repository/ids-npm
+        type: npm
+      service_id: nexus
+form:
+  pipeline:
+    parameters:
+      prod-space: prod
+      prod-app-name: "{{services.app-repo.parameters.repo_name}}"
+    schema:
+      $ref: deploy.json
