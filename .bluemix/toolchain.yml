@@ -73,7 +73,7 @@ services:
 form:
   pipeline:
     parameters:
-      prod-space: prod
+      prod-space: dev
       prod-app-name: "{{services.app-repo.parameters.repo_name}}"
     schema:
       $ref: deploy.json
