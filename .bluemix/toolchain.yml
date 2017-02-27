@@ -51,16 +51,16 @@ services:
     echo-repo:
       parameters:
         has_issues: true
-        repo_name: echo-"{{name}}"
-        repo_url: https://github.com/open-toolchain/dev-echo-module.git
+        repo_name: '{{form.githubpublic.parameters.echo-repo_name}}'
+        repo_url: '{{form.githubpublic.parameters.echo-repo_url}}'
         type: clone
       service_id: githubpublic
 
     app-repo:
       parameters:
         has_issues: true
-        repo_name: app-"{{name}}"
-        repo_url: https://github.com/open-toolchain/dev-simple-app.git
+        repo_name: '{{form.githubpublic.parameters.app-repo_name}}'
+        repo_url: '{{form.githubpublic.parameters.app-repo_url}}'
         type: clone
       service_id: githubpublic
     npm-nexus:
@@ -79,3 +79,11 @@ form:
       prod-app-name: "{{services.app-repo.parameters.repo_name}}"
     schema:
       $ref: deploy.json
+  githubpublic:
+    parameters:
+      echo-repo_name: 'echo-{{toolchain.name}}'
+      echo-repo_url: 'https://github.com/open-toolchain/dev-echo-module.git'
+      app-repo_name: 'app-{{toolchain.name}}'
+      app-repo_url: 'https://github.com/open-toolchain/dev-simple-app.git'
+    schema:
+      $ref: github.json

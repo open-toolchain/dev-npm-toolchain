@@ -1,0 +1,74 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Microservices deployment stage",
+    "localized-struct":{
+        "$ref": "github-localized-struct.json"
+    },
+    "description": "Feb Demo Microservices GitHub Schema",
+    "longDescription": "With GitHub, you can store your source code in a new or an existing GitHub repository.",
+    "type": "object",
+    "properties": {
+        "echo-repo_name": {
+            "type": "string"
+        },
+        "echo-repo_url": {
+            "type": "string"
+        },
+        "app-repo_name": {
+            "type": "string"
+        },
+        "app-repo_url": {
+            "type": "string"
+        }
+    },
+    "required": ["echo-repo_name", "echo-repo_url", "app-repo_name", "app-repo_url"],
+    "form": [
+      {
+        "type": "validator",
+        "url": "/devops/setup/bm-helper/custom_github_helper.html"
+      },
+      {
+        "type": "table",
+        "columnCount": 3,
+        "widths": ["47%", "6%", "47%"],
+        "items": [
+            {
+              "type": "label",
+              "title": "Source Repository"
+            },
+            {
+              "type": "label",
+              "title": ""
+            },
+            {
+              "type": "label",
+              "title": "Target Repository"
+            },
+            {
+              "type": "text",
+              "key": "echo-repo_url"
+            },
+            {
+              "type": "icon",
+              "iconType": "right_arrow"
+            },
+            {
+              "type": "text",
+              "key": "echo-repo_name"
+            },
+            {
+              "type": "text",
+              "key": "app-repo_url"
+            },
+            {
+              "type": "icon",
+              "iconType": "right_arrow"
+            },
+            {
+              "type": "text",
+              "key": "app-repo_name"
+            }
+        ]
+      }
+    ] 
+}
