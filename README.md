@@ -2,7 +2,13 @@
 
 This Echo application uses Node.js and includes a DevOps toolchain that is preconfigured for continuous delivery, source control, and integration with a user-provided Nexus server.
 
-To get started, click **Create toolchain**.
+To get started, click **Create toolchain**. You will need to fill in five items in the Nexus integration:
+- _Integration URL_: The console URL for your Nexus server.
+- _User ID_: An appropriate npm email address.
+- _Authentication token_: Your npm registry authentication token. For example: `AUTH_TOKEN=$( echo -n nexus_user_id:nexus_password | base64 -w0 - )`
+- _Release URL_: Your npm private registry.
+- _Mirror or public URL_: Your npm virtual registry that can serve your private registry as well as the Global registry.
+
 
 [![Deploy To Bluemix](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/open-toolchain/dev-npm-toolchain)
 
