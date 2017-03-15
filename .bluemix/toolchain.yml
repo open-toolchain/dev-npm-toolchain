@@ -12,8 +12,8 @@ template:
     - app-repo
   info:
     git url: >-
-      [https://github.com/paulweb515/dev-npm-toolchain](https://github.com/paulweb515/dev-npm-toolchain)
-    git branch: '[master](https://github.com/paulweb515/dev-npm-toolchain/tree/master)'
+      [https://github.com/open-toolchain/dev-npm-toolchain](https://github.com/open-toolchain/dev-npm-toolchain)
+    git branch: '[master](https://github.com/open-toolchain/dev-npm-toolchain/tree/master)'
 toolchain:
   name: 'DEV-npm-scenario3-{{timestamp}}'
 services:
