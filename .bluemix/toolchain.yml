@@ -45,7 +45,7 @@ services:
               PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
               PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
               APP_REPO: app-repo
-            execute: true
+            execute: false
       service_id: pipeline
     echo-repo:
       parameters:
