@@ -1,7 +1,5 @@
 version: '2'
 default_locale: en
-locales:
-  $ref: locales.yml
 template:
   name: DEV-npm-nexus-scenario3
   description: DEV-npm-nexus-scenario3
